@@ -14,23 +14,37 @@ class signin extends StatefulWidget {
 class signin_Display extends State<signin> {
 
 
+  late TextEditingController _editingControllerID ;
+  late TextEditingController _editingControllerPW ;
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _editingControllerID = TextEditingController();
+    _editingControllerPW = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // vlew variable
-
+    var media_querysize = MediaQuery.of(context).size;
     return MaterialApp(
-      home: Container(
+      home: Scaffold(
+        body: Container(
+        width: media_querysize.width,
+        height: media_querysize.height,
         margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
         decoration: BoxDecoration(border: Border.all(color: Colors.black12)),
-        child: Scaffold(
-          body: Center(
+          child: Center(
             child: Column(
-              children: [
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  width: Variables.FrameWidth,
-                  height: Variables.FrameHeight,
+                  width:  media_querysize.width /3,
+                  height:  media_querysize.height /2 ,
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.black12),
                       color: Colors.white),
@@ -38,15 +52,15 @@ class signin_Display extends State<signin> {
                     children: [
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
-                        width: Variables.LogoWidth,
-                        height: Variables.LogoHeight,
+                        width:  media_querysize.width /3 - 40,
+                        height: media_querysize.height / 7,
                         child: Image.asset("images/instagramLogo.png"),
                       ),
-                      Container(
-                        width: Variables.TextInputWidth,
-                        height: Variables.TextInputHeight,
-                        margin: EdgeInsets.fromLTRB(0, 50, 0, 5),
+                      SizedBox(
+                        width: media_querysize.width /3 - 40,
+                        height:  media_querysize.height / 20,
                         child: TextField(
+                          controller: _editingControllerID,
                           style: TextStyle(fontSize: 14, height: 1.5),
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
@@ -56,10 +70,12 @@ class signin_Display extends State<signin> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: Variables.TextInputWidth,
-                        height: Variables.TextInputHeight,
+                      SizedBox(height:  media_querysize.height / 30,),
+                      SizedBox(
+                        width: media_querysize.width /3 - 40,
+                        height: media_querysize.height / 20,
                         child: TextFormField(
+                          controller: _editingControllerPW,
                           style: TextStyle(fontSize: 14, height: 1.5),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -68,29 +84,28 @@ class signin_Display extends State<signin> {
                           ),
                         ),
                       ),
-                      Container(
-                          margin: EdgeInsets.all(15),
-                          width: Variables.TextInputWidth,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                
+                      SizedBox(height:  media_querysize.height / 30,),
+                      SizedBox(
+                        height:   media_querysize.height / 20,
+                        width:   media_querysize.width /5 ,
+                        child: ElevatedButton(onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute<void>(
-            builder: (BuildContext context) => const signUp(),      
-          ));
- 
-                              }, child: Text("로그인"))),
+                                builder: (BuildContext context) => const signUp(),      
+                                ));
+                              }, child: Text("로그인")),)
+         
                     ],
                   ),
                 ),
-                InkWell(
-                  onTap: () {},
-                  splashColor: Colors.white,
-                  child: Image.asset(
-                    "../images/faceBook.png",
-                    width: 200,
-                    height: 25,
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {},
+                //   splashColor: Colors.white,
+                //   child: Image.asset(
+                //     "../images/faceBook.png",
+                //     width: 200,
+                //     height: 25,
+                //   ),
+                // ),
                 Container(
                   width: Variables.FrameWidth,
                   height: Variables.HrefFrameHeight,
